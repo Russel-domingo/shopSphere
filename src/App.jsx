@@ -1,9 +1,22 @@
 import { Outlet } from "react-router";
 import Navbar from "./components/Navbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function App() {
 
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const saveCart = localStorage.getItem("cartItems");
+
+    // return saveCart ? JSON.parse(saveCart) : [];
+    if (saveCart !== null) {
+      return JSON.parse(saveCart);
+    } else {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
 
   function addToCart(product) {
     setCartItems((currentItems) => [

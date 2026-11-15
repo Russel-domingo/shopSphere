@@ -12,8 +12,9 @@ function ProductCard(props) {
             </div>
             
             <button 
-            className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition-colors"
-            onClick={() => props.onAddToCart(props.product)}>Add to cart</button>
+                className="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition-colors"
+                onClick={() => props.onAddToCart(props.product)}>Add to cart
+            </button>
         </div>
     );
 }
