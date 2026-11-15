@@ -2,8 +2,6 @@ function Home() {
 
     return(
         <div>
-            <h1>Welcome from the Home Page</h1>
-
             <main className="bg-black text-white min-h-screen">
                 <div className="min-h-screen flex flex-col items-center justify-center">
                     <h1 className="text-7xl font-bold">

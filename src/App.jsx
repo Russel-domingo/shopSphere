@@ -1,11 +1,22 @@
 import { Outlet } from "react-router";
 import Navbar from "./components/Navbar";
+import { useState } from "react";
 function App() {
+
+  const [cartItems, setCartItems] = useState([]);
+
+  function addToCart(product) {
+    setCartItems((currentItems) => [
+        ...currentItems,
+        product
+    ]);
+}
+
   return (
     <div>
-      <Navbar/>
+      <Navbar cartItems={cartItems.length}/>
       
-      <Outlet/>
+      <Outlet context={{cartItems, addToCart}}/>
       
     </div>
     // <div className="min-h-screen bg-black flex flex-col items-center justify-center">
