@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 function Navbar() {
     return(
         // <div className="flex flex-row gap-2 justify-center text-black">
@@ -9,23 +10,17 @@ function Navbar() {
         // </div>
         <nav className="bg-white text-black flex flex-row justify-between">
             <div>
-                <p>ShopSphere</p>
+                <Link to="/"> <p>ShopSphere</p> </Link>
             </div>
            
             <ul className="flex flex-row gap-6 items-center">
-                <li>
-                    Home
-                </li>
-                <li>
-                    Shop
-                </li>
-                <li>
-                    About
-                </li>
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="shop">Shop</Link></li>
+                <li><Link to="about">About</Link></li>
             </ul>
            
             <div>
-                <p>Cart icon</p>
+                <Link to="cart"> <p>Cart icon</p> </Link>
             </div>
         </nav>
     );

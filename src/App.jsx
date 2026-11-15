@@ -1,8 +1,10 @@
+import { Outlet } from "react-router";
 import Navbar from "./components/Navbar";
 function App() {
   return (
     <div>
       <Navbar/>
+      <Outlet/>
       <main className="bg-black text-white min-h-screen">
         <div className="min-h-screen flex flex-col items-center justify-center">
             <h1 className="text-7xl font-bold">
