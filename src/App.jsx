@@ -10,13 +10,20 @@ function App() {
         ...currentItems,
         product
     ]);
-}
+  }
+
+  function removeFromCart(productId) {
+    setCartItems((currentItems) => {
+      return currentItems.filter((item) => item.id !== productId);
+    })
+  }
+
 
   return (
     <div>
       <Navbar cartItems={cartItems.length}/>
       
-      <Outlet context={{cartItems, addToCart}}/>
+      <Outlet context={{cartItems, addToCart, removeFromCart}}/>
       
     </div>
     // <div className="min-h-screen bg-black flex flex-col items-center justify-center">

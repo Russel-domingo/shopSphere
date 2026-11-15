@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router";
 
 function Cart() {
     
-    const { cartItems} = useOutletContext();
+    const { cartItems, removeFromCart} = useOutletContext();
     const totalPrice = cartItems.reduce((total, product) => {
         return total + product.price;
     }, 0);
@@ -10,6 +10,7 @@ function Cart() {
     if (cartItems.length === 0) {
         return <p>Please add a product</p>
     }
+
     return (
         <div>
             <p>Total: {totalPrice.toFixed(2)}</p>
@@ -21,11 +22,13 @@ function Cart() {
                         <h2>{product.title}</h2>
                         <h2>{product.price}</h2>
                         <h2>{product.category}</h2>
+
+                        <button onClick={() => removeFromCart(product.id)}>Remove</button>
                     </li>
                 )    
                 })}
 
-                
+    
             </ul>
         </div>
     );
