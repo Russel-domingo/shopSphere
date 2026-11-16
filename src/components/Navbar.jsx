@@ -1,7 +1,7 @@
 
 import { Link } from "react-router";
-function Navbar(props) {
-    const cartItems = props.cartItems.length
+function Navbar({totalItems}) {
+    
     return(
         // <div className="flex flex-row gap-2 justify-center text-black">
         //     <div>ShopSphere logo</div>
@@ -22,8 +22,10 @@ function Navbar(props) {
             </ul>
            
             <div>
-                <Link to="cart"> <p>Cart icon</p> </Link>
-                <p>{cartItems}</p>
+                <Link to="/cart">
+                    Cart ({totalItems})
+                </Link>
+                
             </div>
         </nav>
     );

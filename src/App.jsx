@@ -42,16 +42,18 @@ function App() {
   function upDateQuantity(productId, amount) {
     setCartItems((currentItems) => {
       return currentItems.map((item) => {
-        return item.id === productId ? { ...item, quantity: item.quantity + amount} : item;
+        return item.id === productId ? { ...item, quantity: Math.max(1, item.quantity + amount)} : item;
       });
     });
   }
 
-
+  const totalItems = cartItems.reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
 
   return (
     <div>
-      <Navbar cartItems={cartItems.length}/>
+      <Navbar totalItems={totalItems}/>
       
       <Outlet context={{cartItems, addToCart, removeFromCart, upDateQuantity}}/>
       
