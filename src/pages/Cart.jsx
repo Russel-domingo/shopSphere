@@ -2,9 +2,9 @@ import { useOutletContext } from "react-router";
 
 function Cart() {
     
-    const { cartItems, removeFromCart} = useOutletContext();
+    const { cartItems, removeFromCart, upDateQuantity} = useOutletContext();
     const totalPrice = cartItems.reduce((total, product) => {
-        return total + product.price;
+        return total + (product.price * product.quantity);
     }, 0);
 
     if (cartItems.length === 0) {
@@ -22,8 +22,10 @@ function Cart() {
                         <h2>{product.title}</h2>
                         <h2>{product.price}</h2>
                         <h2>{product.category}</h2>
-
+                        <h2>{product.quantity}</h2>
                         <button onClick={() => removeFromCart(product.id)}>Remove</button>
+                        <button onClick={() => upDateQuantity(product.id, 1)}>+</button>
+                        <button onClick={() => upDateQuantity(product.id, -1)}>-</button>
                     </li>
                 )    
                 })}

@@ -19,10 +19,17 @@ function App() {
   }, [cartItems]);
 
   function addToCart(product) {
-    setCartItems((currentItems) => [
-        ...currentItems,
-        product
-    ]);
+    setCartItems((currentItems) => {
+      const existingProduct = currentItems.find((item) => item.id === product.id);
+
+      if (existingProduct) {
+        return currentItems.map((item) => {
+          return item.id === product.id ? {...item, quantity: item.quantity + 1} : item;
+        });
+      }
+
+      return [...currentItems, {...product, quantity: 1}];
+    });
   }
 
   function removeFromCart(productId) {
@@ -31,12 +38,22 @@ function App() {
     })
   }
 
+  // todo: add a Product quantity
+  function upDateQuantity(productId, amount) {
+    setCartItems((currentItems) => {
+      return currentItems.map((item) => {
+        return item.id === productId ? { ...item, quantity: item.quantity + amount} : item;
+      });
+    });
+  }
+
+
 
   return (
     <div>
       <Navbar cartItems={cartItems.length}/>
       
-      <Outlet context={{cartItems, addToCart, removeFromCart}}/>
+      <Outlet context={{cartItems, addToCart, removeFromCart, upDateQuantity}}/>
       
     </div>
     // <div className="min-h-screen bg-black flex flex-col items-center justify-center">
